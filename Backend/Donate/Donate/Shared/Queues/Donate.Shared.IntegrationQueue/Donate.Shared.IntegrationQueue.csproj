@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utilities\Donate.Shared.Logging\Donate.Shared.Logging.csproj" />
+    <ProjectReference Include="..\..\Utilities\Donate.Shared.Utilities\Donate.Shared.Utilities.csproj" />
+    <ProjectReference Include="..\Donate.Shared.Queues\Donate.Shared.Queues.csproj" />
+  </ItemGroup>
+
+</Project>

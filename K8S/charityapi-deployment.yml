@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: charityapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: charityapi
+  template:
+    metadata:
+      labels:
+        component: charityapi
+    spec:
+      containers:
+        - name: charityapi
+          image: rushilojageer/donate-charityapi
+          ports:
+            - containerPort: 8001
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Staging
+            - name: SQL_CONNSTR_CHARITY
+              valueFrom:
+                secretKeyRef:
+                  name: sqlconnstrcharity
+                  key: SQL_CONNSTR_CHARITY
+            - name: RMQ_HOSTNAME
+              value: rabbitmq-cluster-ip-service
+            - name: RMQ_USERNAME
+              value: guest
+            - name: RMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rmqpassword
+                  key: RMQ_PASSWORD

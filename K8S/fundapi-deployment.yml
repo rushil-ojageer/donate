@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fundapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: fundapi
+  template:
+    metadata:
+      labels:
+        component: fundapi
+    spec:
+      containers:
+        - name: fundapi
+          image: rushilojageer/donate-fundapi
+          ports:
+            - containerPort: 8003
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Staging
+            - name: SQL_CONNSTR_FUND
+              valueFrom:
+                secretKeyRef:
+                  name: sqlconnstrfund
+                  key: SQL_CONNSTR_FUND
+            - name: RMQ_HOSTNAME
+              value: rabbitmq-cluster-ip-service
+            - name: RMQ_USERNAME
+              value: guest
+            - name: RMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rmqpassword
+                  key: RMQ_PASSWORD

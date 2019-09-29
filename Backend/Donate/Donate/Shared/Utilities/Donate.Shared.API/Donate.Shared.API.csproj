@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Queues\Donate.Shared.ResponseQueue\Donate.Shared.ResponseQueue.csproj" />
+    <ProjectReference Include="..\Donate.Shared.Logging\Donate.Shared.Logging.csproj" />
+    <ProjectReference Include="..\Donate.Shared.Utilities\Donate.Shared.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

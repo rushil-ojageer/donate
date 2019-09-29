@@ -1,0 +1,43 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "charityapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/charity-api/{catchAll}",
+      "UpstreamScheme": "http",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "donorapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/donor-api/{catchAll}",
+      "UpstreamScheme": "http",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "fundapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/fund-api/{catchAll}",
+      "UpstreamScheme": "http",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    }
+  ]
+}
