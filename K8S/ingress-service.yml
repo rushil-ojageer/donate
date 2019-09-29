@@ -9,7 +9,19 @@ spec:
   rules:
     - http:
         paths:
-          - path: /backend/?(.*)
+          - path: /gateway/?(.*)
             backend:
               serviceName: gateway-cluster-ip-service
+              servicePort: 80
+          - path: /charities/?(.*)
+            backend:
+              serviceName: charityapi-cluster-ip-service
+              servicePort: 80
+          - path: /donors/?(.*)
+            backend:
+              serviceName: donorapi-cluster-ip-service
+              servicePort: 80
+          - path: /funds/?(.*)
+            backend:
+              serviceName: fundapi-cluster-ip-service
               servicePort: 80
