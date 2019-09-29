@@ -15,7 +15,6 @@ namespace Donate.FundService.IntegrationWorker
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args)
-                .UseUrls("http://*:7014")
                 .Build()
                 .Run();
         }

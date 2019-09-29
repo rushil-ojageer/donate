@@ -15,7 +15,6 @@ namespace Donate.FundService.TransactionProcessor
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args)
-                .UseUrls("http://*:7015")
                 .Build()
                 .Run();
         }

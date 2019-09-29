@@ -15,7 +15,6 @@ namespace Donate.FundService.TransactionFeed
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args)
-                .UseUrls("http://*:7020")
                 .Build()
                 .Run();
         }
