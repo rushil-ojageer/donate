@@ -16,7 +16,7 @@ spec:
         - name: gateway
           image: rushilojageer/donate-gateway
           ports:
-            - containerPort: 8000
+            - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: Staging
+              value: "Staging"

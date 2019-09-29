@@ -17,20 +17,20 @@ spec:
           image: rushilojageer/donate-donorworker
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: Staging
+              value: "Staging"
             - name: SQL_CONNSTR_DONOR
               valueFrom:
                 secretKeyRef:
                   name: sqlconnstrdonor
                   key: SQL_CONNSTR_DONOR
             - name: RMQ_HOSTNAME
-              value: rabbitmq-cluster-ip-service
+              value: "rabbitmq-cluster-ip-service"
             - name: RMQ_USERNAME
-              value: guest
+              value: "guest"
             - name: RMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: rmqpassword
                   key: RMQ_PASSWORD
             - name: RMQ_PORT
-              value: 5672
+              value: "5672"

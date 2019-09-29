@@ -7,5 +7,5 @@ spec:
   selector:
     component: donorapi
   ports:
-    - port: 8002
-      targetPort: 8002
+    - port: 80
+      targetPort: 80

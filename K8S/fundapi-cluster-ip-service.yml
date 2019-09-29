@@ -7,5 +7,5 @@ spec:
   selector:
     component: fundapi
   ports:
-    - port: 8003
-      targetPort: 8003
+    - port: 80
+      targetPort: 80
