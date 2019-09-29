@@ -80,10 +80,18 @@ namespace Donate.DonorService.API.Models
         public async Task Remove(DonorContext db)
         {
             if (!Id.HasValue) throw new Exception("Please ensure that Id field has been populated before removing.");
-            var donor = await db.Donors.FilterDeletedItems().SingleOrDefaultAsync(x => x.Id == Id);
+            var donor = await db.Donors
+                .FilterDeletedItems()
+                .Include(x => x.DonorCharities)
+                .SingleOrDefaultAsync(x => x.Id == Id);
 
             if (donor == null)
                 throw new ArgumentException($"Donor with ID '{Id}' does not exist.", nameof(Id));
+
+            foreach (var item in donor.DonorCharities)
+            {
+                item.IsDeleted = true;
+            }
 
             donor.IsDeleted = true;
             await db.SaveChangesAsync();

@@ -1,6 +1,7 @@
 ﻿using Donate.FundService.API.Extensions;
 using Donate.FundService.API.Settings;
 using Donate.Shared.API.Extensions;
+using Donate.Shared.API.Filters;
 using Donate.Shared.IntegrationQueue.Extensions;
 using Donate.Shared.IntegrationQueue.Settings;
 using Donate.Shared.Queues.Extensions;
@@ -18,6 +19,7 @@ namespace Donate.FundService.API
     public class Startup
     {
         private readonly IHostingEnvironment _env;
+        private const string CorsOriginPolicy = "CorsOriginPolicy";
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -30,7 +32,20 @@ namespace Donate.FundService.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddCors(corsOptions =>
+            {
+                corsOptions.AddPolicy(CorsOriginPolicy, builder =>
+                {
+                    builder
+                        .WithOrigins("http://localhost:4200", "http://34.90.158.29")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
+            services.AddMvc(SetCustomMvcOptions)
+                .AddControllersAsServices()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             //Settings
             services.ConfigureQueueSettings(Configuration.GetSection("QueueConnection"), _env);
@@ -65,8 +80,15 @@ namespace Donate.FundService.API
                 app.UseHttpStatusCodeExceptionMiddleware();
             }
 
+            app.UseCors(CorsOriginPolicy);
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private void SetCustomMvcOptions(MvcOptions options)
+        {
+            options.Filters.Add(typeof(RequestContextFilter));
+            options.Filters.Add(typeof(AsynchronousActionExecutionFilter));
         }
     }
 }

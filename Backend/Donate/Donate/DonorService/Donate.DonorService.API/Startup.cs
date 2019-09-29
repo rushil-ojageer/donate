@@ -37,7 +37,7 @@ namespace Donate.DonorService.API
                 corsOptions.AddPolicy(CorsOriginPolicy, builder =>
                 {
                     builder
-                        .WithOrigins("http://localhost:4200")
+                        .WithOrigins("http://localhost:4200", "http://34.90.158.29")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
