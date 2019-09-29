@@ -26,11 +26,11 @@ docker push rushilojageer/donate-transactionfeed:$SHA
 docker push rushilojageer/donate-transactionprocessor:$SHA
 
 kubectl apply -f K8S
-kubectl set image deployments/gateway-deployment client=rushilojageer/donate-gateway:$SHA
-kubectl set image deployments/charityapi-deployment server=rushilojageer/donate-charityapi:$SHA
-kubectl set image deployments/donorapi-deployment client=rushilojageer/donate-donorapi:$SHA
-kubectl set image deployments/donorworker-deployment worker=rushilojageer/donate-donorworker:$SHA
-kubectl set image deployments/fundapi-deployment server=rushilojageer/donate-fundapi:$SHA
-kubectl set image deployments/fundworker-deployment client=rushilojageer/donate-fundworker:$SHA
-kubectl set image deployments/transactionprocessor-deployment worker=rushilojageer/donate-transactionprocessor:$SHA
-kubectl set image deployments/transactionfeed-deployment server=rushilojageer/donate-transactionfeed:$SHA
+kubectl set image deployments/gateway-deployment gateway=rushilojageer/donate-gateway:$SHA
+kubectl set image deployments/charityapi-deployment charityapi=rushilojageer/donate-charityapi:$SHA
+kubectl set image deployments/donorapi-deployment donorapi=rushilojageer/donate-donorapi:$SHA
+kubectl set image deployments/donorworker-deployment donorworker=rushilojageer/donate-donorworker:$SHA
+kubectl set image deployments/fundapi-deployment fundapi=rushilojageer/donate-fundapi:$SHA
+kubectl set image deployments/fundworker-deployment fundworker=rushilojageer/donate-fundworker:$SHA
+kubectl set image deployments/transactionprocessor-deployment transactionprocessor=rushilojageer/donate-transactionprocessor:$SHA
+kubectl set image deployments/transactionfeed-deployment transactionfeed=rushilojageer/donate-transactionfeed:$SHA
