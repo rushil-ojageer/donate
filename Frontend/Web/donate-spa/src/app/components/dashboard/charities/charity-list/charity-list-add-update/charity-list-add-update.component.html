@@ -1,0 +1,24 @@
+<app-generic-crud-add-update [createUpdateComponent]="createUpdateComponent" 
+                             [model]="charity"
+                             [mode]="mode">
+    <div class="form-group">
+        <label for="charityName">Charity Name</label>
+        <input #name="ngModel" required [(ngModel)]='charity.charityName' name="charityName" type="text" class="form-control" id="charityName" placeholder="Charity Name">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">'Name' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="contactPerson">Contact Person</label>
+        <input #contactPerson="ngModel" required [(ngModel)]='charity.contactPerson' name="contactPerson" type="text" class="form-control" id="contactPerson" placeholder="Contact Person">
+        <div [hidden]="contactPerson.valid || contactPerson.pristine" class="alert alert-danger">'Contact Person' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="emailAddress">Email</label>
+        <input #emailAddress="ngModel" required [(ngModel)]='charity.emailAddress' name="emailAddress" type="email" class="form-control" id="emailAddress" placeholder="Email">
+        <div [hidden]="emailAddress.valid || emailAddress.pristine" class="alert alert-danger">'Email' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="contactNumber">Contact Number</label>
+        <input #contactNumber="ngModel" required [(ngModel)]='charity.contactNumber' name="contactNumber" type="text" class="form-control" id="contactNumber" placeholder="Contact Number">
+        <div [hidden]="contactNumber.valid || contactNumber.pristine" class="alert alert-danger">'Contact Number' is required.</div>
+    </div>
+</app-generic-crud-add-update>

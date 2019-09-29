@@ -1,0 +1,26 @@
+<form #genericForm="ngForm" (ngSubmit)="onSubmit()" name="form" novalidate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="errors.length > 0" class="alert alert-danger">
+            <ul>
+                <li *ngFor="let error of errors">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+        <ng-content></ng-content>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary pull-right" aria-label="Close" (click)="closeModal()" [disabled]="submitting">Cancel</button>
+        <button type="submit" 
+                class="btn btn-primary" 
+                [disabled]="submitting">
+            Submit <fa-icon [spin]="true" [icon]="faSpinner" *ngIf="submitting"></fa-icon>
+        </button>
+    </div>
+</form>

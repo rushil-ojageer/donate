@@ -1,0 +1,21 @@
+<app-generic-crud-add-update [createUpdateComponent]="createUpdateComponent" 
+                             [model]="donorTransactionSource"
+                             [mode]="mode">
+    <div class="form-group">
+        <label for="financialInstitution">Financial Institution</label>
+        <input #financialInstitution="ngModel" required [(ngModel)]='donorTransactionSource.financialInstitution' name="financialInstitution" type="text" class="form-control" id="financialInstitution" placeholder="Financial Institution">
+        <div [hidden]="financialInstitution.valid || financialInstitution.pristine" class="alert alert-danger">'Financial Institution' is required.</div>
+    </div>  
+    <div class="form-group">
+        <label for="accountType">Account Type</label>
+        <select class="form-control" #accountType="ngModel" required [(ngModel)]='donorTransactionSource.type' name="accountType">
+            <option value="DebitCard">Debit Card</option>
+            <option value="CreditCard">Credit Card</option>
+        </select>
+    </div>   
+    <div class="form-group">
+        <label for="accountNumber">Account Number</label>
+        <input #accountNumber="ngModel" required [(ngModel)]='donorTransactionSource.identifier' name="accountNumber" type="text" class="form-control" id="accountNumber" placeholder="Account Number">
+        <div [hidden]="accountNumber.valid || accountNumber.pristine" class="alert alert-danger">'Account Number' is required.</div>
+    </div>  
+</app-generic-crud-add-update>

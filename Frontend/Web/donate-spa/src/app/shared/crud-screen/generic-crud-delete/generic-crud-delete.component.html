@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Item?</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div *ngIf="errors.length > 0" class="alert alert-danger">
+        <ul>
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+    Are you sure you want to delete this item?
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary pull-right" aria-label="No" (click)="closeModal()" [disabled]="submitting">No</button>
+    <button type="button" class="btn btn-primary" [disabled]="submitting" aria-label="Yes" (click)="onDeleteItem()" >
+        Yes <fa-icon [spin]="true" [icon]="faSpinner" *ngIf="submitting"></fa-icon>
+    </button>
+</div>

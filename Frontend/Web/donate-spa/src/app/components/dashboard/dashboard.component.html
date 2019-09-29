@@ -1,0 +1,25 @@
+<div class="dashboard-container">
+    <div class="dashboard-nav-container border-right">
+        <a class="dashboard-nav-item" routerLink="charities">
+            <span class="dashboard-icon">
+                <fa-icon [icon]="faRibbon"></fa-icon>
+            </span>
+            <span class="dashboard-label">Charities</span>
+        </a>
+        <a class="dashboard-nav-item" routerLink="donors">
+            <span class="dashboard-icon">
+                <fa-icon [icon]="faDonate"></fa-icon>
+            </span>
+            <span class="dashboard-label">Donors</span>
+        </a>
+    </div>
+    <div class="dashboard-content-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 pl-5 pr-5 pb-5 pt-4">
+                    <router-outlet class="m-5"></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

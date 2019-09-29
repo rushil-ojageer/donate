@@ -1,0 +1,46 @@
+<app-generic-crud-add-update [createUpdateComponent]="createUpdateComponent" 
+                             [model]="donor"
+                             [mode]="mode">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input #firstName="ngModel" required [(ngModel)]='donor.firstName' name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+        <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">'First Name' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input #lastName="ngModel" required [(ngModel)]='donor.lastName' name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
+        <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">'Last Name' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Identification Type</label>
+        <select class="form-control" #lastName="ngModel" required [(ngModel)]='donor.identityType' name="identityType">
+            <option value="SouthAfricanIdentityNumber">South African Identity Number</option>
+            <option value="PassportNumber">Passport Number</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="identityNumber">Identity Number</label>
+        <input #identityNumber="ngModel" required [(ngModel)]='donor.identityNumber' name="identityNumber" type="text" class="form-control" id="identityNumber" placeholder="Identity Number">
+        <div [hidden]="identityNumber.valid || identityNumber.pristine" class="alert alert-danger">'Identity Number' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="emailAddress">Email</label>
+        <input #emailAddress="ngModel" required [(ngModel)]='donor.emailAddress' name="emailAddress" type="email" class="form-control" id="emailAddress" placeholder="Email">
+        <div [hidden]="emailAddress.valid || emailAddress.pristine" class="alert alert-danger">'Email' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="contactNumber">Contact Number</label>
+        <input #contactNumber="ngModel" required [(ngModel)]='donor.contactNumber' name="contactNumber" type="text" class="form-control" id="contactNumber" placeholder="Contact Number">
+        <div [hidden]="contactNumber.valid || contactNumber.pristine" class="alert alert-danger">'Contact Number' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="transactionDonationPercentage">Percentage of Transaction To Be Donated</label>
+        <input #transactionDonationPercentage="ngModel" required [(ngModel)]='donor.transactionDonationPercentage' name="transactionDonationPercentage" type="text" class="form-control" id="transactionDonationPercentage" placeholder="Percentage of Transaction To Be Donated">
+        <div [hidden]="transactionDonationPercentage.valid || transactionDonationPercentage.pristine" class="alert alert-danger">'Percentage of Transaction To Be Donated' is required.</div>
+    </div>
+    <div class="form-group">
+        <label for="donationCap">Total Montly Donations To Be Capped At (ZAR)</label>
+        <input #donationCap="ngModel" required [(ngModel)]='donor.donationCap' name="donationCap" type="text" class="form-control" id="donationCap" placeholder="Total Montly Donations To Be Capped At (ZAR)">
+        <div [hidden]="donationCap.valid || donationCap.pristine" class="alert alert-danger">'Total Montly Donations To Be Capped At (ZAR)' is required.</div>
+    </div>
+</app-generic-crud-add-update>                             

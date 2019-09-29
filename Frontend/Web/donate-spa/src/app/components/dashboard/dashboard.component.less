@@ -1,0 +1,75 @@
+@navBarHeight: 56px;
+@height: calc(100vh - @navBarHeight);
+
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: @height;
+}
+
+.dashboard-nav-container {
+    height: @height;
+    width: @navBarHeight;
+    position: fixed;
+    -webkit-transition: width 150ms;
+    transition: width 150ms;
+    overflow: hidden;
+    background-color: #007bff;
+    z-index: 2;
+
+    &:hover {
+        width: calc(5 * @navBarHeight)
+    }
+
+    &:not(active) {
+        width: @navBarHeight
+    }
+
+    .dashboard-nav-item {
+        height: @navBarHeight;
+        min-width: @navBarHeight;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+
+        &:hover .dashboard-icon {
+            background-color: black;
+            cursor: pointer;
+        }
+
+        &:hover .dashboard-label {
+            background-color: black;
+            cursor: pointer;
+        }
+
+        .dashboard-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: @navBarHeight;
+            height: @navBarHeight;
+            float: left;
+        }
+
+        .dashboard-label {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            height: @navBarHeight;
+            margin-left: @navBarHeight;
+        }
+    }
+}
+
+.dashboard-content-container {
+    height: @height;
+    width: 100%;
+    margin-left: @navBarHeight;
+    overflow-y: scroll;
+    z-index: 1;
+}
+
+.dashboard-nav {
+    background-color: white;
+}

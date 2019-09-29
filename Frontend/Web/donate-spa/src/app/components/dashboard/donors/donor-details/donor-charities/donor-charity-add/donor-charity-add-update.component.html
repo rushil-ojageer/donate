@@ -1,0 +1,25 @@
+<app-generic-crud-add-update [createUpdateComponent]="createUpdateComponent" 
+                             [model]="donorCharity"
+                             [mode]="mode">
+    <div class="form-group">
+        <label for="charity">Charity</label>
+        <input required 
+               #charity="ngModel"
+               [isAnimated]="true" 
+               [adaptivePosition]="true" 
+               [(ngModel)]="asyncSelected"
+               [typeaheadAsync]="true"
+               [typeahead]="dataSource"
+               (typeaheadLoading)="changeTypeaheadLoading($event)"
+               (typeaheadOnSelect)="typeaheadOnSelect($event)"
+               [typeaheadOptionsLimit]="7"
+               typeaheadOptionField="charityName"
+               name="charity" 
+               class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="donationPercentage">Percentage</label>
+        <input #donationPercentage="ngModel" required [(ngModel)]='donorCharity.donationPercentage' name="donationPercentage" type="text" class="form-control" id="donationPercentage" placeholder="Percentage">
+        <div [hidden]="donationPercentage.valid || donationPercentage.pristine" class="alert alert-danger">'Percentage' is required.</div>
+    </div>    
+</app-generic-crud-add-update>
