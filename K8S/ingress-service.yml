@@ -11,7 +11,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /backend/
+          - path: /backend/.*
             backend:
               serviceName: gateway-cluster-ip-service
               servicePort: 80
