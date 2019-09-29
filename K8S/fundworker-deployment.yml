@@ -32,3 +32,5 @@ spec:
                 secretKeyRef:
                   name: rmqpassword
                   key: RMQ_PASSWORD
+            - name: RMQ_PORT
+              value: 5672
