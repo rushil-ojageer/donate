@@ -81,11 +81,6 @@ namespace Donate.Shared.Queues
         {
             try
             {
-                _logger.Info($"HOST={_queueConnectionSettings.Value.HostName}");
-                _logger.Info($"PORT={_queueConnectionSettings.Value.Port}");
-                _logger.Info($"USERNAME={_queueConnectionSettings.Value.Username}");
-                _logger.Info($"PASSWORD={_queueConnectionSettings.Value.Password}");
-                
                 var factory = new ConnectionFactory
                 {
                     HostName = _queueConnectionSettings.Value.HostName,

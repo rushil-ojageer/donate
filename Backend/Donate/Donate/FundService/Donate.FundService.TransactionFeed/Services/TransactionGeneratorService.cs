@@ -45,7 +45,7 @@ namespace Donate.FundService.TransactionFeed.Services
         public Task StartAsync(CancellationToken stoppingToken)
         {
             SendTransaction(null);
-            _timer = new Timer(SendTransaction, null, TimeSpan.Zero, TimeSpan.FromMinutes(15));
+            _timer = new Timer(SendTransaction, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
             return Task.CompletedTask;
         }
 
@@ -64,32 +64,29 @@ namespace Donate.FundService.TransactionFeed.Services
             var random = new Random(Guid.NewGuid().GetHashCode());
             foreach (var ts in donorTransactionSources)
             {
-                for (var i = 0; i < 10; i++)
+                var merchantIndex = random.Next(0, 10);
+                var merchant = _merchants.ElementAt(merchantIndex);
+
+                var transactionEvent = new TransactionEvent
                 {
-                    var merchantIndex = random.Next(0, 10);
-                    var merchant = _merchants.ElementAt(merchantIndex);
+                    Amount = random.Next(1, 10000),
+                    Currency = "ZAR",
+                    MerchantIdentifier = merchant.Key.ToString(),
+                    MerchantName = merchant.Value,
+                    TransactionDateTimeUtc = DateTime.UtcNow,
+                    TransactionIdentifier = Guid.NewGuid().ToString(),
+                    TransactionSourceIdentifier = ts.Identifier
+                };
 
-                    var transactionEvent = new TransactionEvent
-                    {
-                        Amount = random.Next(1, 10000),
-                        Currency = "ZAR",
-                        MerchantIdentifier = merchant.Key.ToString(),
-                        MerchantName = merchant.Value,
-                        TransactionDateTimeUtc = DateTime.UtcNow,
-                        TransactionIdentifier = Guid.NewGuid().ToString(),
-                        TransactionSourceIdentifier = ts.Identifier
-                    };
+                var integrationEvent = new IntegrationEvent<TransactionEvent>
+                {
+                    Body = transactionEvent,
+                    DateTimeUtc = DateTime.UtcNow,
+                    Event = EventNames.NewTransaction.ToString(),
+                    Service = ServiceNames.TransactionFeed.ToString()
+                };
 
-                    var integrationEvent = new IntegrationEvent<TransactionEvent>
-                    {
-                        Body = transactionEvent,
-                        DateTimeUtc = DateTime.UtcNow,
-                        Event = EventNames.NewTransaction.ToString(),
-                        Service = ServiceNames.TransactionFeed.ToString()
-                    };
-
-                    _transactionFeedService.Post(integrationEvent);
-                }
+                _transactionFeedService.Post(integrationEvent);
             }
         }
         public void Dispose()
