@@ -13,6 +13,7 @@ namespace Donate.Shared.API.Models
 
         public virtual Task<ValidationResults> Validate(T db)
         {
+            IsValidated = true;
             return Task.FromResult(new ValidationResults());
         }
     }
