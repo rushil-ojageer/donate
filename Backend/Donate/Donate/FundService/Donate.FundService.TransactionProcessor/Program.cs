@@ -15,8 +15,16 @@ namespace Donate.FundService.TransactionProcessor
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args)
+                .ConfigureLogging(ConfigureLogging)
                 .Build()
                 .Run();
+        }
+
+        private static void ConfigureLogging(WebHostBuilderContext hostingContext, ILoggingBuilder logging)
+        {
+            logging.ClearProviders();
+            logging.AddConsole();
+            logging.AddDebug();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
