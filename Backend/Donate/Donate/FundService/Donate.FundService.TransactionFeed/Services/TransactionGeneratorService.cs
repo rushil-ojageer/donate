@@ -51,7 +51,7 @@ namespace Donate.FundService.TransactionFeed.Services
         {
             _logger.Info("Starting background services...");
             SendTransaction(null);
-            _timer = new Timer(SendTransaction, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+            _timer = new Timer(SendTransaction, null, TimeSpan.Zero, TimeSpan.FromMinutes(60));
             return Task.CompletedTask;
         }
 
