@@ -3,7 +3,7 @@ docker build -t rushilojageer/donate-donorapi:latest -t rushilojageer/donate-don
 docker build -t rushilojageer/donate-donorworker:latest -t rushilojageer/donate-donorworker:$SHA -f ./Backend/Donate/Donate/DonorService/Donate.DonorService.IntegrationWorker/Dockerfile ./Backend/Donate/Donate/
 docker build -t rushilojageer/donate-fundapi:latest -t rushilojageer/donate-fundapi:$SHA -f ./Backend/Donate/Donate/FundService/Donate.FundService.API/Dockerfile ./Backend/Donate/Donate/
 docker build -t rushilojageer/donate-fundworker:latest -t rushilojageer/donate-fundworker:$SHA -f ./Backend/Donate/Donate/FundService/Donate.FundService.IntegrationWorker/Dockerfile ./Backend/Donate/Donate/
-docker build -t rushilojageer/donate-transactionfeed:latest -t rushilojageer/donate-transactionfeed:$SHA -f ./Backend/Donate/Donate/FundService/Donate.FundService.IntegrationWorker/Dockerfile ./Backend/Donate/Donate/
+docker build -t rushilojageer/donate-transactionfeed:latest -t rushilojageer/donate-transactionfeed:$SHA -f ./Backend/Donate/Donate/FundService/Donate.FundService.TransactionFeed/Dockerfile ./Backend/Donate/Donate/
 docker build -t rushilojageer/donate-transactionprocessor:latest -t rushilojageer/donate-transactionprocessor:$SHA -f ./Backend/Donate/Donate/FundService/Donate.FundService.TransactionProcessor/Dockerfile ./Backend/Donate/Donate/
 docker build -t rushilojageer/donate-client:latest -t rushilojageer/donate-client:$SHA -f ./Frontend/Web/donate-spa/Dockerfile ./Frontend/Web/donate-spa/
 

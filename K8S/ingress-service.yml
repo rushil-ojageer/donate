@@ -25,7 +25,3 @@ spec:
             backend:
               serviceName: fundapi-cluster-ip-service
               servicePort: 80
-          - path: /rabbitmq/?(.*)
-            backend:
-              serviceName: rabbitmq-cluster-ip-service
-              servicePort: 15672
