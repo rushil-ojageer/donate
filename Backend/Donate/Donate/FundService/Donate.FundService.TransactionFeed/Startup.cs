@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Donate.FundService.Data;
-using Donate.FundService.TransactionFeed.Extensions;
+﻿using Donate.FundService.TransactionFeed.Extensions;
 using Donate.FundService.TransactionFeed.Settings;
 using Donate.Shared.IntegrationQueue.Extensions;
 using Donate.Shared.Logging;
-using Donate.Shared.QueueListener.Extensions;
-using Donate.Shared.Queues;
 using Donate.Shared.Queues.Extensions;
-using Donate.Shared.Queues.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

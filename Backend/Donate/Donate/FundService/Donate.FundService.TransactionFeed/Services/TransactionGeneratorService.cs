@@ -9,6 +9,8 @@ using Donate.Shared.Eventing;
 using Donate.Shared.Eventing.TransactionEvents;
 using Donate.Shared.IntegrationQueue;
 using Donate.Shared.IntegrationQueue.Models;
+using Donate.Shared.Logging;
+using Donate.Shared.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -21,10 +23,13 @@ namespace Donate.FundService.TransactionFeed.Services
         private readonly FundContext _db;
         private readonly IDictionary<Guid, string> _merchants;
         private Timer _timer;
+        private IApiLogger _logger;
 
         public TransactionGeneratorService(IServiceProvider serviceProvider)
         {
             _serviceScope = serviceProvider.CreateScope();
+            var loggerFactory = _serviceScope.ServiceProvider.GetServiceOrThrow<ILoggerFactory>();
+            _logger = loggerFactory.GetLogger<TransactionGeneratorService>();
             _transactionFeedService = _serviceScope.ServiceProvider.GetService(typeof(IIntegrationEventQueue)) as IIntegrationEventQueue;
             _db = _serviceScope.ServiceProvider.GetService(typeof(FundContext)) as FundContext;
             _merchants = new Dictionary<Guid, string>()
@@ -44,6 +49,7 @@ namespace Donate.FundService.TransactionFeed.Services
 
         public Task StartAsync(CancellationToken stoppingToken)
         {
+            _logger.Info("Starting background services...");
             SendTransaction(null);
             _timer = new Timer(SendTransaction, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
             return Task.CompletedTask;
@@ -51,12 +57,15 @@ namespace Donate.FundService.TransactionFeed.Services
 
         public Task StopAsync(CancellationToken stoppingToken)
         {
+            _logger.Info("Stopping background services...");
             _timer?.Change(Timeout.Infinite, 0);
             return Task.CompletedTask;
         }
 
         private void SendTransaction(object obj)
         {
+            _logger.Info("Sending transaction...");
+
             var donorTransactionSources = _db.DonorTransactionSources
                 .FilterDeletedItems()
                 .ToList();
